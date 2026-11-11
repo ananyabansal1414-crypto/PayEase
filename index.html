@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PayEase Global Connect</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3fb;--surface:#fff;--ink:#0b1f4d;--muted:#5b6b8c;--line:#d5deee;--brand:#0070e0;--navy:#0b2a6f;--ok:#1a7f4b;--okbg:#e2f5ea;--bad:#c62828;--badbg:#fde8e8;--warn:#9a6700;--warnbg:#fff3cd;--tint:#e4efff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0a1226;--surface:#121c38;--ink:#e8eefc;--muted:#9aa9cc;--line:#26335a;--brand:#4da3ff;--navy:#7fb6ff;--ok:#5ad08e;--okbg:#10301f;--bad:#ff8a8a;--badbg:#3a1616;--warn:#f1c453;--warnbg:#33290c;--tint:#16264d}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0a1226;--surface:#121c38;--ink:#e8eefc;--muted:#9aa9cc;--line:#26335a;--brand:#4da3ff;--navy:#7fb6ff;--ok:#5ad08e;--okbg:#10301f;--bad:#ff8a8a;--badbg:#3a1616;--warn:#f1c453;--warnbg:#33290c;--tint:#16264d}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;line-height:1.45;min-height:100%}
+.app{max-width:460px;margin:0 auto;padding:16px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.logo{font-weight:800;font-size:22px;color:var(--navy);letter-spacing:-.5px}
+.logo span{color:var(--brand)}
+.tabs{display:flex;gap:4px;background:var(--tint);padding:4px;border-radius:999px}
+.tabs button{border:0;background:none;color:var(--muted);font:700 13px Manrope,sans-serif;padding:7px 14px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--surface);color:var(--navy)}
+.steps{display:flex;gap:4px;margin:6px 0 14px}
+.steps i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.steps i.done{background:var(--brand)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px}
+h1{font-size:22px;margin:0 0 4px;letter-spacing:-.4px}
+p.sub{margin:0 0 16px;color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:12px;text-align:left;font:600 14px Manrope,sans-serif;cursor:pointer;width:100%}
+.opt small{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:2px}
+.opt.on{border-color:var(--brand);background:var(--tint)}
+.opt:focus-visible,.btn:focus-visible,input:focus-visible,.tabs button:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.btn{width:100%;border:0;border-radius:999px;background:var(--brand);color:#fff;font:800 15px Manrope,sans-serif;padding:14px;margin-top:16px;cursor:pointer}
+.btn.ghost{background:none;color:var(--muted);border:1.5px solid var(--line);margin-top:8px}
+.btn.danger{background:none;color:var(--bad);border:1.5px solid var(--bad);margin-top:8px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+label{display:block;font-weight:700;font-size:13px;margin:14px 0 6px}
+input[type=number],input[type=text]{width:100%;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:12px;font:700 20px Manrope,sans-serif}
+.rows{margin-top:14px;border-top:1px solid var(--line)}
+.rows div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rows div b{font-weight:700}
+.rows .tot{font-size:17px}
+.badge{display:inline-block;font-size:11px;font-weight:800;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.b-ok{background:var(--okbg);color:var(--ok)}.b-bad{background:var(--badbg);color:var(--bad)}.b-warn{background:var(--warnbg);color:var(--warn)}.b-blue{background:var(--tint);color:var(--brand)}
+.risk{border-radius:12px;padding:12px;font-size:14px;margin:4px 0 0}
+.risk.low{background:var(--okbg);color:var(--ok)}.risk.mid{background:var(--warnbg);color:var(--warn)}
+.otp{display:flex;gap:8px;margin-top:6px}
+.otp input{text-align:center;font-size:22px;padding:10px 0}
+.big{text-align:center;padding:10px 0}
+.big .ic{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 10px;font-size:30px;font-weight:800}
+.ic.ok{background:var(--okbg);color:var(--ok)}.ic.bad{background:var(--badbg);color:var(--bad)}.ic.x{background:var(--tint);color:var(--muted)}
+.tl{list-style:none;margin:14px 0 0;padding:0}
+.tl li{position:relative;padding:0 0 14px 24px;font-size:14px;color:var(--muted)}
+.tl li:before{content:"";position:absolute;left:0;top:4px;width:12px;height:12px;border-radius:50%;background:var(--line)}
+.tl li.d{color:var(--ink)}.tl li.d:before{background:var(--brand)}
+.hist{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;color:var(--ink);width:100%;text-align:left;font-family:inherit}
+.hist small{color:var(--muted);display:block}
+.demo{margin-top:14px;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.feat{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.hide{display:none}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .25s ease}@keyframes in{from{opacity:0;transform:translateY(6px)}}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">Pay<span>Ease</span></div>
+    <div class="tabs" role="tablist"><button id="t-pay" class="on" onclick="tab('pay')">Pay</button><button id="t-his" onclick="tab('his')">History</button></div>
+  </header>
+  <div id="steps" class="steps"></div>
+  <main id="view"></main>
+  <div class="demo"><input type="checkbox" id="fail"><label for="fail" style="margin:0;font-weight:500">Demo: make the next payment fail</label></div>
+</div>
+<script>
+const FX={USD:1,INR:83.4,CNY:7.24,BRL:5.45,EUR:0.93,GBP:0.79};
+const SYM={USD:"$",INR:"₹",CNY:"¥",BRL:"R$",EUR:"€",GBP:"£"};
+const C={
+ IN:{n:"India",cur:"INR",m:[{id:"upi",n:"UPI",f:0.4,t:"Instant"},{id:"ptm",n:"Paytm Wallet",f:1.2,t:"Instant"},{id:"php",n:"PhonePe",f:0.8,t:"Instant"}]},
+ CN:{n:"China",cur:"CNY",m:[{id:"ali",n:"Alipay",f:1.0,t:"Minutes"},{id:"wc",n:"WeChat Pay",f:1.3,t:"Minutes"}]},
+ BR:{n:"Brazil",cur:"BRL",m:[{id:"pix",n:"Pix",f:0.5,t:"Instant"},{id:"pp",n:"PayPal Balance",f:1.8,t:"Instant"}]},
+ US:{n:"United States",cur:"USD",m:[{id:"pp",n:"PayPal Balance",f:0.9,t:"Instant"},{id:"ven",n:"Venmo",f:1.5,t:"Instant"}]},
+ GB:{n:"United Kingdom",cur:"GBP",m:[{id:"pp",n:"PayPal Balance",f:1.1,t:"Instant"},{id:"bank",n:"Open Banking",f:0.3,t:"1 hour"}]},
+ DE:{n:"Germany",cur:"EUR",m:[{id:"sepa",n:"SEPA Instant",f:0.2,t:"Seconds"},{id:"pp",n:"PayPal Balance",f:1.4,t:"Instant"}]}
+};
+let S={step:0,tab:"pay",home:"IN",user:null,country:null,method:null,amt:100,otp:["","","",""],hist:[
+ {id:"PE-1042",to:"Pix · Brazil",usd:60,st:"success",d:"Nov 2",ev:["Payment started","Verified","Delivered"]},
+ {id:"PE-1038",to:"Alipay · China",usd:240,st:"failed",d:"Oct 28",ev:["Payment started","Verified","Bank declined","Refund issued to your balance"]}
+],last:null,open:null};
+const $=id=>document.getElementById(id);
+const money=(v,c)=>SYM[c]+v.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+function calc(){const c=C[S.country],m=S.method||best(),usd=+S.amt||0,fee=usd*m.f/100,net=usd-fee,loc=net*FX[c.cur];return{c,m,usd,fee,net,loc,rate:FX[c.cur]}}
+function best(){const c=C[S.country];return c.m.slice().sort((a,b)=>a.f-b.f)[0]}
+const hc=()=>C[S.home].cur;
+const hm=v=>money(v*FX[hc()],hc());
+const homeSel=()=>`<label for="home">Your home country</label><select id="home" onchange="S.home=this.value;render()" style="width:100%;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:12px;font:600 15px Manrope,sans-serif">${Object.entries(C).map(([k,v])=>`<option value="${k}" ${S.home==k?"selected":""}>${v.n} (${v.cur})</option>`).join("")}</select>`;
+function tab(t){S.tab=t;S.open=null;$("t-pay").className=t=="pay"?"on":"";$("t-his").className=t=="his"?"on":"";render()}
+function go(n){S.step=n;render()}
+function pick(k,v){S[k]=v;render()}
+function reset(){S.step=1;S.country=null;S.method=null;S.amt=100;S.otp=["","","",""];render()}
+function render(){
+  const st=$("steps");st.innerHTML=S.tab=="pay"?[0,1,2,3,4,5].map(i=>`<i class="${i<=S.step?"done":""}"></i>`).join(""):"";
+  $("view").innerHTML=S.tab=="his"?histView():[login,country,amount,secure,confirm,result][S.step]();
+  const a=$("amt");if(a&&document.activeElement===document.body){}
+}
+function login(){return `<div class="card"><h1>Welcome back</h1><p class="sub">One wallet for every payment network in the world.</p>
+<div class="rows" style="margin-top:0"><div><span>Account</span><b>Aarav Sharma</b></div><div><span>Balance</span><b>$1,250.00</b></div></div>${homeSel()}
+<div class="feat"><span class="badge b-blue">Real-time FX</span><span class="badge b-blue">AI fraud check</span><span class="badge b-blue">Refund tracking</span></div>
+<button class="btn" onclick="S.user=1;go(1)">Continue with PayPal</button></div>`}
+function country(){const cs=C[S.country];
+ return `<div class="card"><h1>Where are you paying?</h1><p class="sub">Pick a country and we’ll show the apps that work there.</p>
+<div class="grid">${Object.entries(C).map(([k,v])=>`<button class="opt ${S.country==k?"on":""}" onclick="S.method=null;pick('country','${k}')">${v.n}<small>${v.cur}</small></button>`).join("")}</div>
+${cs?`<label>Supported payment methods</label><div class="grid" style="grid-template-columns:1fr">${cs.m.map(m=>`<button class="opt ${S.method&&S.method.id==m.id?"on":""}" onclick="S.method=C[S.country].m.find(x=>x.id=='${m.id}');render()">${m.n}${m.id==best().id?'<span class="badge b-ok">Best for you</span>':""}<small>${m.f}% fee · ${m.t}</small></button>`).join("")}</div><p class="sub" style="margin-top:8px;font-size:12px">Best for you = lowest total cost for this country.</p>`:""}
+<button class="btn" ${S.country&&S.method?"":"disabled"} onclick="go(2)">Continue</button></div>`}
+function amount(){const r=calc();
+ return `<div class="card"><h1>How much to send?</h1><p class="sub">Paying with ${r.m.n} in ${r.c.n}.</p>
+<label for="amt">Amount (USD)</label><input id="amt" type="number" min="1" max="5000" value="${S.amt}" oninput="S.amt=this.value;upd()">
+${homeSel()}<div class="rows" id="fees">${feeRows()}</div>
+<button class="btn" onclick="go(3)">Check security</button><button class="btn ghost" onclick="go(1)">Back</button></div>`}
+function feeRows(){const r=calc(),h=hc(),hr=FX[h];return `<div class="tot"><span>You pay (${C[S.home].n})</span><b>${money(r.usd*hr,h)}</b></div><div><span>Fee in ${h}</span><b>${money(r.fee*hr,h)}</b></div><div><span>Your rate</span><b>1 ${h} = ${(r.rate/hr).toFixed(4)} ${r.c.cur}</b></div><div><span>Same amount in USD</span><b>${money(r.usd,"USD")}</b></div><div><span>Fee (${r.m.f}%) in USD</span><b>${money(r.fee,"USD")}</b></div><div><span>Fee is included in what you send</span><b>No hidden charges</b></div><div class="tot"><span>They receive</span><b>${money(r.loc,r.c.cur)}</b></div>`}
+function upd(){$("fees").innerHTML=feeRows()}
+function secure(){const u=+S.amt,high=u>1000,sc=high?62:8;
+ return `<div class="card"><h1>Security check</h1><p class="sub">Our fraud monitor reviewed this payment.</p>
+<div class="risk ${high?"mid":"low"}"><b>Risk score ${sc}/100 — ${high?"Medium":"Low"}</b><br>${high?"Large amount to a new payee, so we need one more check.":"Amount and destination match your usual activity."}</div>
+<label>Enter the 4-digit code sent to your phone (try 1234)</label>
+<div class="otp">${[0,1,2,3].map(i=>`<input type="text" inputmode="numeric" maxlength="1" aria-label="Digit ${i+1}" value="${S.otp[i]}" oninput="S.otp[${i}]=this.value;chk()">`).join("")}</div>
+<button class="btn" id="vb" ${S.otp.join("")=="1234"?"":"disabled"} onclick="go(4)">Verify and continue</button><button class="btn ghost" onclick="go(2)">Back</button></div>`}
+function chk(){$("vb").disabled=S.otp.join("")!="1234"}
+function confirm(){const r=calc();
+ return `<div class="card"><h1>Confirm payment</h1><p class="sub">Check the details before you send.</p>
+<div class="rows" style="margin-top:0"><div><span>Pay via</span><b>${r.m.n}, ${r.c.n}</b></div><div><span>You pay (${hc()})</span><b>${hm(r.usd)}</b></div><div><span>Fee in ${hc()}</span><b>${hm(r.fee)}</b></div><div><span>You send (USD)</span><b>${money(r.usd,"USD")}</b></div><div class="tot"><span>They receive</span><b>${money(r.loc,r.c.cur)}</b></div></div>
+<button class="btn" onclick="pay()">Send ${money(r.usd,"USD")}</button><button class="btn danger" onclick="cancel()">Cancel payment</button></div>`}
+function pay(){const r=calc(),ok=!$("fail").checked,id="PE-"+(1043+S.hist.length);
+ const t={id,to:r.m.n+" · "+r.c.n,usd:r.usd,st:ok?"success":"failed",d:"Today",ev:ok?["Payment started","Verified","Delivered to "+r.m.n]:["Payment started","Verified","Network declined the payment","Refund of "+money(r.usd,"USD")+" sent to your balance"],loc:money(r.loc,r.c.cur)};
+ S.hist.unshift(t);S.last=t;go(5)}
+function cancel(){S.last={st:"cancelled"};go(5)}
+function result(){const t=S.last;
+ if(t.st=="cancelled")return `<div class="card big"><div class="ic x">×</div><h1>Payment cancelled</h1><p class="sub">Nothing was charged.</p><button class="btn" onclick="reset()">Start a new payment</button></div>`;
+ const ok=t.st=="success";
+ return `<div class="card"><div class="big"><div class="ic ${ok?"ok":"bad"}">${ok?"✓":"!"}</div><h1>${ok?"Payment sent":"Payment failed"}</h1><p class="sub">${ok?t.loc+" delivered via "+t.to+".":"Your money is coming back. Track the refund below."}</p></div>
+<ul class="tl">${t.ev.map(e=>`<li class="d">${e}</li>`).join("")}</ul>
+<div class="rows"><div><span>Reference</span><b>${t.id}</b></div></div>
+<button class="btn" onclick="reset()">Make another payment</button><button class="btn ghost" onclick="tab('his')">View history</button></div>`}
+function histView(){
+ return `<div class="card"><h1>All transactions</h1><p class="sub">Every network, one history.</p>${S.hist.map((t,i)=>`<button class="hist" onclick="S.open=S.open==${i}?null:${i};render()"><span>${t.to}<small>${t.id} · ${t.d}</small></span><span style="text-align:right"><b>${money(t.usd,"USD")}</b><br><span class="badge ${t.st=="success"?"b-ok":"b-bad"}" style="margin:0">${t.st=="success"?"Paid":"Refunded"}</span></span></button>${S.open==i?`<ul class="tl" style="margin-top:12px">${t.ev.map(e=>`<li class="d">${e}</li>`).join("")}</ul>`:""}`).join("")}</div>`}
+render();
+</script>
+</body>
+</html>
